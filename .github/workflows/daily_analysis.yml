@@ -61,12 +61,20 @@ jobs:
           # ==========================================
           # AI 配置
           # ==========================================
-          # LITELLM_CONFIG
-          LITELLM_CONFIG: ${{ vars.LITELLM_CONFIG || secrets.LITELLM_CONFIG }}
-          LITELLM_CONFIG_YAML: ${{ vars.LITELLM_CONFIG_YAML || secrets.LITELLM_CONFIG_YAML }}
-          LITELLM_API_KEY: ${{ secrets.LITELLM_API_KEY }}
-          LITELLM_MODEL: ${{ vars.LITELLM_MODEL || secrets.LITELLM_MODEL }}
-
+          # 1. 最高优先级路由：强制加上 gemini/ 前缀，彻底消灭 404 错误
+          LITELLM_MODEL: 'gemini/gemini-1.5-flash'
+          
+          # 2. 密钥双重绑定：确保底层引擎绝对能拿到你的 API Key
+          LITELLM_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          
+          # 3. 清空旧版配置：防止旧逻辑互相干扰导致错乱
+          GEMINI_MODEL: ''
+          GEMINI_MODEL_FALLBACK: ''
+          
+          # 4. 保留物理减速：每分析完一只股票强制等待，防止触发免费版封控
+          GEMINI_REQUEST_DELAY: '60.0'
+          MAX_RETRIES: '5'
           # Gemini AI（主选）
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_MODEL: 'gemini-1.5-flash'
