@@ -69,9 +69,9 @@ jobs:
 
           # Gemini AI（主选）
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GEMINI_MODEL: 'gemini-1.5-flash'
-          GEMINI_MODEL_FALLBACK: 'gemini-1.5-flash'
-          GEMINI_REQUEST_DELAY: '5.0'
+          GEMINI_MODEL: 'gemini-2.5-flash'
+          GEMINI_MODEL_FALLBACK: 'gemini-2.5-flash'
+          GEMINI_REQUEST_DELAY: '6.0'
           MAX_RETRIES: '5'
           
           # AIHubMix（优先于 OPENAI_API_KEY，自动适配 base_url，推荐国内用户）
