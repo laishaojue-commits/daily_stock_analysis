@@ -59,7 +59,7 @@ jobs:
       - name: 执行股票分析
         env:
           # ==========================================
-          # AI 配置
+          # AI 配置 (已切换为智谱 GLM-4-Flash)
           # ==========================================
           # 1. 彻底清空 Gemini 相关的旧配置，防止系统误调用报错
           GEMINI_API_KEY: ''
@@ -72,16 +72,8 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_BASE_URL: 'https://open.bigmodel.cn/api/paas/v4/'
           OPENAI_MODEL: 'glm-4-flash'
-          
-          # AIHubMix（优先于 OPENAI_API_KEY，自动适配 base_url，推荐国内用户）
-          AIHUBMIX_KEY: ${{ secrets.AIHUBMIX_KEY }}
 
-          # OpenAI 兼容 API（备选）
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          OPENAI_BASE_URL: ${{ vars.OPENAI_BASE_URL || secrets.OPENAI_BASE_URL }}
-          OPENAI_MODEL: ${{ vars.OPENAI_MODEL || secrets.OPENAI_MODEL }}
-
-          # Anthropic / Claude
+          # Anthropic / Claude (保留原有占位)
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           ANTHROPIC_MODEL: ${{ vars.ANTHROPIC_MODEL || secrets.ANTHROPIC_MODEL || 'claude-3-5-sonnet-20241022' }}
 
